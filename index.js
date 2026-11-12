@@ -15,22 +15,23 @@ export const Config = z.object({
   maxBodyChars: z.number().step(1).min(1).default(100000).volatile(),
 })
 
+const DEFAULT_BASE = 'https://api.tavily.com'
 const err = (m, c) => new WebError(m, 'WEB_PROVIDER_ERROR', c ? { cause: c } : {})
 
 class TavilyFetchProvider {
   id = 'tavily'
-  constructor(ctx, config) { this.ctx = ctx; this.config = config }
+  constructor(ctx, snapshot) { this.ctx = ctx; this.snapshot = snapshot }
   async key() {
-    const c = this.config
+    const c = this.snapshot()
     const ref = c.apiKeyEnv || 'TAVILY_API_KEY'
     const creds = this.ctx.get('credentials')
     const fromCred = creds ? (await creds.resolve(ref))?.value : launchEnvironmentOf(this.ctx).get(ref)?.value
     return fromCred || c.apiKey || ''
   }
-  available() { return URL.canParse(this.config.baseURL || '') }
+  available() { return URL.canParse(this.snapshot().baseURL || DEFAULT_BASE) }
   async ready() { return (await this.key()).length > 0 }
   async fetch(request, signal) {
-    const o = this.config
+    const o = this.snapshot()
     const apiKey = await this.key()
     if (!apiKey) throw err('Tavily API key is not configured (Plugins > Tavily web fetch)')
     let u
@@ -69,6 +70,16 @@ class TavilyFetchProvider {
   }
 }
 
+/** `.volatile()` fields are live settings accessors: read them with `.get()` on every call. */
 export function apply(ctx, config) {
-  ctx.web.registerFetchProvider(new TavilyFetchProvider(ctx, config))
+  const snapshot = () => ({
+    baseURL: config.baseURL.get() || DEFAULT_BASE,
+    apiKeyEnv: config.apiKeyEnv.get(),
+    apiKey: config.apiKey.get(),
+    extractDepth: config.extractDepth.get(),
+    format: config.format.get(),
+    timeoutSeconds: config.timeoutSeconds.get(),
+    maxBodyChars: config.maxBodyChars.get(),
+  })
+  ctx.web.registerFetchProvider(new TavilyFetchProvider(ctx, snapshot))
 }
