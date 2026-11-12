@@ -1,0 +1,14 @@
+# Mounts Tavily Extract as the web_fetch provider and pins the seam to it.
+# Set apiKey (or the TAVILY_API_KEY env var) and baseURL on the web-fetch-tavily row.
+- id: web
+  name: '@deepseek-ai/dsh-web'
+  config:
+    fetchProvider: tavily
+- id: tool-web
+  name: '@deepseek-ai/dsh-tool-web'
+  config:
+    fetch: true
+    fetchTimeoutMs: 60000
+- insert:
+    - id: web-fetch-tavily
+      name: dsh-web-fetch-tavily
