@@ -44,5 +44,12 @@
     "@deepseek-ai/cordis": "*",
     "@deepseek-ai/dsh-launch-environment": "*",
     "@deepseek-ai/dsh-web": "*"
+  },
+  "dependencies": {
+    "@deepseek-ai/schemastery": "~3.19.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Huakira/dsh-web-fetch-tavily.git"
   }
 }
