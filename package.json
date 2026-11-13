@@ -1,5 +1,5 @@
 {
-  "name": "dsh-web-fetch-tavily",
+  "name": "@huakira/web-fetch-tavily",
   "version": "0.2.1",
   "description": "Tavily Extract as the web_fetch provider for the DSH web seam (ctx.web), with a custom endpoint.",
   "keywords": [
@@ -51,5 +51,16 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Huakira/dsh-web-fetch-tavily.git"
+  },
+  "author": {
+    "name": "Huakira",
+    "email": "huakexie@proton.me"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "dsh": ">=0.2.2-rc.1 <0.3.0",
+    "node": ">=20"
   }
 }
