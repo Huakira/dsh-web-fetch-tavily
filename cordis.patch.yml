@@ -11,4 +11,4 @@
     fetchTimeoutMs: 60000
 - insert:
     - id: web-fetch-tavily
-      name: @huakirax/dsh-web-fetch-tavily
+      name: "@huakirax/dsh-web-fetch-tavily"

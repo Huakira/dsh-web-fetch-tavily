@@ -1,5 +1,5 @@
 window.__ModuleLoader__.load({
-	id: "dsh-web-fetch-tavily",
+	id: "@huakirax/dsh-web-fetch-tavily",
 	factory: (require) => {
 		const React = require("react");
 		const h = React.createElement;
@@ -99,7 +99,7 @@ window.__ModuleLoader__.load({
 			ctx.effect(() => ctx.locale.register(NS, { zh: {}, en: {} }), "web-fetch-tavily: dictionaries");
 			const form = ctx.configForms.get(ENTRY);
 			ctx.slots.inject("plugins.bundle.config", () => ctx.slots.register(
-				{ name: "plugins.bundle.config", key: "dsh-web-fetch-tavily", locale: NS },
+				{ name: "plugins.bundle.config", key: "@huakirax/dsh-web-fetch-tavily", locale: NS },
 				() => h(Page, { ctx, form, locale: ctx.locale })));
 		}
 		return { inject: INJECT, apply };
