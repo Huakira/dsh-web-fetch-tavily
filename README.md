@@ -2,7 +2,7 @@
 
 > 个人自用插件，代码和文档由 AI 参与编写，不承诺维护。使用前请先备份 DSH 配置。
 
-安装：`dsh plugin --profile web add @huakirax/web-fetch-tavily`
+安装：`dsh plugin --profile web add @huakirax/dsh-web-fetch-tavily`
 
 Tavily Extract as the `web_fetch` provider for the DeepSeek Harness web seam (`ctx.web`), with a custom endpoint (e.g. a self-hosted TavilyProxyManager).
 

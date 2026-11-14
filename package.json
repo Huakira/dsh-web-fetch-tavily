@@ -1,5 +1,5 @@
 {
-  "name": "@huakirax/web-fetch-tavily",
+  "name": "@huakirax/dsh-web-fetch-tavily",
   "version": "0.2.1",
   "description": "Tavily Extract as the web_fetch provider for the DSH web seam (ctx.web), with a custom endpoint.",
   "keywords": [
